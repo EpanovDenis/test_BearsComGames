@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class Trap : MonoBehaviour
 {
-    [SerializeField] private GameObject _player;
+    public static int pointForKill = 100;
 
+    private bool inTrap = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _player.transform.position = transform.position;
-        _player.GetComponent<PlayerMovement>().enabled = false;
+        if (inTrap == false)
+        {
+            collision.transform.position = transform.position;
+            collision.GetComponent<PlayerMovement>().enabled = false;
+            inTrap = true;
+        }        
     }
 }
